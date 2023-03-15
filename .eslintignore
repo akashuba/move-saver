@@ -1,0 +1,14 @@
+node_modules/
+dist/
+webpack*
+postcss.config.js
+babel.config.js
+devHelper.js
+*.test.ts
+*.test.tsx
+redux-integration-test-utils.ts
+redux-test-utils.ts
+test-utils.ts
+*.styl.d.ts
+jest.config.js
+jest

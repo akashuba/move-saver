@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Header } from './header'
+import { Layout } from './layout'
 
 
 export const App = () => {
-  return <div><Header /></div>
+  return <div><Layout /></div>
 }
