@@ -1,8 +1,12 @@
 import React from 'react';
 
-import { Layout } from './layout'
-
+import { SearchInput } from './searchInput';
+import { Layout } from './layout';
 
 export const App = () => {
-  return <div><Layout /></div>
-}
+  return (
+    <Layout>
+      <SearchInput />
+    </Layout>
+  );
+};

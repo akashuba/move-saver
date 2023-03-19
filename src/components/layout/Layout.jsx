@@ -3,18 +3,17 @@ import React from 'react';
 import { Layout as AntLayout, Space } from 'antd';
 const { Header, Footer, Sider, Content } = AntLayout;
 
-import { useCharacters } from "../../hooks/rick-hook"
-import { useMovie } from "../../hooks/movie-hook"
+import { useCharacters } from '../../hooks/rick-hook';
+import { useMovie } from '../../hooks/movie-hook';
 
-import styles from './Layout.css'
+import styles from './Layout.css';
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
+  // const { data: charactersData } = useCharacters();
+  // const { data: movieData } = useMovie('Harry Potter');
 
-  const {data: charactersData} = useCharacters();
-  const {data: movieData} = useMovie('Harry Potter');
-
-  console.log('characters ', charactersData);
-  console.log('movieData ', movieData);
+  // console.log('characters ', charactersData);
+  // console.log('movieData ', movieData);
 
   return (
     <Space
@@ -24,11 +23,12 @@ export const Layout = () => {
       }}
       size={[0, 48]}
     >
-     <AntLayout>
-      <Header className={styles.headerStyle}>Header</Header>
+      <AntLayout>
+        {/* <Header className={styles.headerStyle}>Header</Header>
       <Content className={styles.contentStyle}>Content</Content>
-      <Footer className={styles.footerStyle}>Footer</Footer>
-    </AntLayout>
-  </Space>
-  )
-}
+      <Footer className={styles.footerStyle}>Footer</Footer> */}
+        {children}
+      </AntLayout>
+    </Space>
+  );
+};
