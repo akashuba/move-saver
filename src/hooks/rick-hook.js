@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { getMovies } from '../api/movie'
+import { getCharacters } from '../api/rickImorty'
 
-export const useMovies = () => {
+export const useCharacters = () => {
   const [data, setData] = useState()
 
   useEffect(() => {
-    getMovies()
+    getCharacters()
       .then(function (response) {
         console.log('response ', response);
 

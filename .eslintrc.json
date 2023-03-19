@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "plugin:@rcf/base",
-    "plugin:@rcf/reactConfig",
-    "plugin:@rcf/typescriptConfig"
-  ],
+  "extends": "eslint:recommended",
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "double"]

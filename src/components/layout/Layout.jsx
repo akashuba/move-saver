@@ -3,15 +3,18 @@ import React from 'react';
 import { Layout as AntLayout, Space } from 'antd';
 const { Header, Footer, Sider, Content } = AntLayout;
 
-import { useMovies } from "../../hooks/movies-hook"
+import { useCharacters } from "../../hooks/rick-hook"
+import { useMovie } from "../../hooks/movie-hook"
 
 import styles from './Layout.css'
 
 export const Layout = () => {
 
-  const {data} = useMovies();
+  const {data: charactersData} = useCharacters();
+  const {data: movieData} = useMovie('Harry Potter');
 
-  console.log('movies ', data);
+  console.log('characters ', charactersData);
+  console.log('movieData ', movieData);
 
   return (
     <Space
