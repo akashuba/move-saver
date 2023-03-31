@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Card, Empty, List, Image } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { useMovie } from '../../hooks/movie-hook';
@@ -28,14 +28,35 @@ export const SearchInput = () => {
   console.log(data);
 
   return (
-    <Space direction="vertical">
-      <Search
-        placeholder="input search text"
-        onSearch={handleSearch}
-        style={{
-          width: 200,
-        }}
-      />
-    </Space>
+    <>
+      <Space direction="vertical">
+        <Search
+          placeholder="input search text"
+          onSearch={handleSearch}
+          style={{
+            width: 200,
+          }}
+        />
+
+        {data ? (
+          <List
+            grid={{
+              gutter: 16,
+              column: 4,
+            }}
+            dataSource={data.Search}
+            renderItem={(item) => (
+              <List.Item>
+                <Card title={item.Title}>
+                  <Image width={200} src={item.Poster} />
+                </Card>
+              </List.Item>
+            )}
+          />
+        ) : (
+          <Empty />
+        )}
+      </Space>
+    </>
   );
 };

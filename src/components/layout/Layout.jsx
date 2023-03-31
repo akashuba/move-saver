@@ -24,10 +24,9 @@ export const Layout = ({ children }) => {
       size={[0, 48]}
     >
       <AntLayout>
-        {/* <Header className={styles.headerStyle}>Header</Header>
-      <Content className={styles.contentStyle}>Content</Content>
-      <Footer className={styles.footerStyle}>Footer</Footer> */}
-        {children}
+        <Header className={styles.headerStyle}>Header</Header>
+        <Content className={styles.contentStyle}>{children}</Content>
+        <Footer className={styles.footerStyle}>Footer</Footer>
       </AntLayout>
     </Space>
   );
