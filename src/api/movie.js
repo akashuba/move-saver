@@ -8,9 +8,12 @@ const options = {
   baseURL: `http://www.omdbapi.com`,
 };
 
-export const getMovie = (title) => {
+export const getMovie = (title, page = 1) => {
   // const incomeTitle = title ? `t=${title}` : '';
   const incomeTitle = title ? `s=${title}` : '';
 
-  return axios.request(`/?apikey=${apiKey}&${incomeTitle}`, options);
+  return axios.request(
+    `/?apikey=${apiKey}&${incomeTitle}&page=${page}`,
+    options
+  );
 };

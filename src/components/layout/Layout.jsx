@@ -1,12 +1,25 @@
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
-import { Layout as AntLayout, Space } from 'antd';
+import { Layout as AntLayout, Space, Menu } from 'antd';
 const { Header, Footer, Sider, Content } = AntLayout;
+import { HomeTwoTone, HeartTwoTone } from '@ant-design/icons';
 
 import { useCharacters } from '../../hooks/rick-hook';
 import { useMovie } from '../../hooks/movie-hook';
 
 import styles from './Layout.css';
+
+const items = [
+  {
+    label: <Link to="/">Main</Link>,
+    icon: <HomeTwoTone />,
+  },
+  {
+    label: <Link to="/favorite">Favorite</Link>,
+    icon: <HeartTwoTone />,
+  },
+];
 
 export const Layout = ({ children }) => {
   // const { data: charactersData } = useCharacters();
@@ -24,8 +37,15 @@ export const Layout = ({ children }) => {
       size={[0, 48]}
     >
       <AntLayout>
-        <Header className={styles.headerStyle}>Header</Header>
-        <Content className={styles.contentStyle}>{children}</Content>
+        {' '}
+        <Header className={styles.headerStyle}>
+          <Space>
+            <Menu mode="horizontal" items={items} />
+          </Space>
+        </Header>{' '}
+        <Content className={styles.contentStyle}>
+          <Outlet />
+        </Content>
         <Footer className={styles.footerStyle}>Footer</Footer>
       </AntLayout>
     </Space>
