@@ -14,18 +14,25 @@ export const SearchInput = () => {
   const [page, setPage] = useState(1);
   const [value, setValue] = useState('');
 
-  // console.log('styles ', styles);
-  // useEffect(() => {
-  //   if (value) {
-  //     getMovie(value, page)
-  //       .then(function (response) {
-  //         setData(response?.data);
-  //       })
-  //       .catch(function (error) {
-  //         console.error(error);
-  //       });
-  //   }
-  // }, [value, page]);
+  const handleGetMovie = (value, page) => {
+    getMovie(value, page)
+      .then(function (response) {
+        setData(response?.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handSearch = (newValue) => {
+    setValue(newValue);
+    handleGetMovie(newValue, page);
+  };
+
+  const handPagination = (newPage) => {
+    setPage(newPage);
+    handleGetMovie(value, newPage);
+  };
 
   const handleSearch = (value) => {
     console.log('value: ', value);
@@ -58,7 +65,7 @@ export const SearchInput = () => {
       <div className={styles.container}>
         <Search
           placeholder="input search text"
-          onSearch={handleSearch}
+          onSearch={(value) => handSearch(value)}
           style={{
             width: 200,
           }}
@@ -89,7 +96,7 @@ export const SearchInput = () => {
             <Pagination
               defaultCurrent={page}
               total={totalPages}
-              onChange={(page) => setPage(page)}
+              onChange={(page) => handPagination(page)}
             />
           </>
         ) : (

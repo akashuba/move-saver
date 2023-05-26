@@ -13,10 +13,12 @@ import styles from './Layout.css';
 const items = [
   {
     label: <Link to="/">Main</Link>,
+    key: 'mail',
     icon: <HomeTwoTone />,
   },
   {
     label: <Link to="/favorite">Favorite</Link>,
+    key: 'favorite',
     icon: <HeartTwoTone />,
   },
 ];
