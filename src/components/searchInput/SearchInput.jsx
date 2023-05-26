@@ -15,29 +15,36 @@ export const SearchInput = () => {
   const [value, setValue] = useState('');
 
   // console.log('styles ', styles);
-  useEffect(() => {
-    if (value) {
-      getMovie(value, page)
-        .then(function (response) {
-          setData(response?.data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    }
-  }, [value, page]);
+  // useEffect(() => {
+  //   if (value) {
+  //     getMovie(value, page)
+  //       .then(function (response) {
+  //         setData(response?.data);
+  //       })
+  //       .catch(function (error) {
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [value, page]);
 
-  // const handleSearch = (value) => {
-  //   console.log('value: ', value);
-  //   console.log('page: ', page);
-  //   getMovie(value, page)
-  //     .then(function (response) {
-  //       setData(response?.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // };
+  const handleSearch = (value) => {
+    console.log('value: ', value);
+    console.log('page: ', page);
+    getMovie(value, page)
+      .then(function (response) {
+        setData(response?.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handleClickFavorite = (item) => () => {
+    console.log(item);
+    const favorite = {};
+    favorite[item?.imdbID] = item;
+    window.localStorage.setItem('favorite', JSON.stringify(favorite));
+  };
 
   console.log('data: ', data);
 
@@ -48,10 +55,10 @@ export const SearchInput = () => {
   }
   return (
     <>
-      <Space direction="vertical" align="center">
+      <div className={styles.container}>
         <Search
           placeholder="input search text"
-          onSearch={(value) => setValue(value)}
+          onSearch={handleSearch}
           style={{
             width: 200,
           }}
@@ -67,7 +74,13 @@ export const SearchInput = () => {
               dataSource={data.Search}
               renderItem={(item) => (
                 <List.Item>
-                  <Card hoverable title={item.Title}>
+                  <Card
+                    hoverable
+                    title={item.Title}
+                    actions={[
+                      <button onClick={handleClickFavorite(item)}>⭐</button>,
+                    ]}
+                  >
                     <Image width={200} src={item.Poster} />
                   </Card>
                 </List.Item>
@@ -82,7 +95,7 @@ export const SearchInput = () => {
         ) : (
           <Empty />
         )}
-      </Space>
+      </div>
     </>
   );
 };

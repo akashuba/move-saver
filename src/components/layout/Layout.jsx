@@ -29,25 +29,25 @@ export const Layout = ({ children }) => {
   // console.log('movieData ', movieData);
 
   return (
-    <Space
-      direction="vertical"
-      style={{
-        width: '100%',
-      }}
-      size={[0, 48]}
-    >
-      <AntLayout>
-        {' '}
-        <Header className={styles.headerStyle}>
-          <Space>
-            <Menu mode="horizontal" items={items} />
-          </Space>
-        </Header>{' '}
-        <Content className={styles.contentStyle}>
-          <Outlet />
-        </Content>
-        <Footer className={styles.footerStyle}>Footer</Footer>
-      </AntLayout>
-    </Space>
+    // <Space
+    //   direction="vertical"
+    //   style={{
+    //     width: '100%',
+    //   }}
+    //   size={[0, 48]}
+    // >
+    <AntLayout className={styles.container}>
+      {' '}
+      <Header className={styles.headerStyle}>
+        <Space>
+          <Menu mode="horizontal" items={items} />
+        </Space>
+      </Header>{' '}
+      <Content className={styles.contentStyle}>
+        <Outlet />
+      </Content>
+      <Footer className={styles.footerStyle}>Footer</Footer>
+    </AntLayout>
+    // </Space>
   );
 };

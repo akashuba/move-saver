@@ -1,15 +1,17 @@
+.container {
+  height: 100vh;
+}
+
 .headerStyle {
-  background-color: #7dbcea;
-  color: white;
+  /* background-color: #7dbcea; */
+
   height: 10vh;
 }
 
 .contentStyle {
-  background-color: #108ee9;
-  color: white;
+  /* background-color: #108ee9; */
 }
 
 .footerStyle {
-  background-color: #7dbcea;
-  color: white;
+  /* background-color: #7dbcea; */
 }
