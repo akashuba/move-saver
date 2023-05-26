@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Empty, List, Image, Pagination } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
-import { useMovie } from '../../hooks/movie-hook';
+// import { useMovie } from '../../hooks/movie-hook';
 import { getMovie } from '../../api/movie';
 
 import styles from './SearchInput.css';
@@ -34,31 +34,19 @@ export const SearchInput = () => {
     handleGetMovie(value, newPage);
   };
 
-  const handleSearch = (value) => {
-    console.log('value: ', value);
-    console.log('page: ', page);
-    getMovie(value, page)
-      .then(function (response) {
-        setData(response?.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-
   const handleClickFavorite = (item) => () => {
     console.log(item);
-    const favorite = {};
+    const favorite = JSON.parse(localStorage.getItem('favorite'));
+
     favorite[item?.imdbID] = item;
     window.localStorage.setItem('favorite', JSON.stringify(favorite));
   };
 
-  console.log('data: ', data);
+  // console.log('data: ', data);
 
   let totalPages = 0;
   if (data) {
     totalPages = Math.ceil(+data.totalResults / 10);
-    // console.log('pages: ', totalPages);
   }
   return (
     <>
