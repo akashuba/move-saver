@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Card, Empty, List, Pagination, Button, Input, Space } from 'antd';
-import { HeartOutlined } from '@ant-design/icons';
+import { Empty, Pagination, Input, Space } from 'antd';
+
+import { ListComponent } from '../listComponent/ListComponent';
 
 import { getMovie } from '../../api/movie';
 
 import styles from './SearchInput.css';
-import { Link } from 'react-router-dom';
 
 const { Search } = Input;
 
@@ -13,7 +13,6 @@ export const SearchInput = () => {
   const [data, setData] = useState();
   const [page, setPage] = useState(1);
   const [value, setValue] = useState('');
-  const [ghost, setghost] = useState(true);
 
   const handleGetMovie = (value, page) => {
     getMovie(value, page)
@@ -66,40 +65,12 @@ export const SearchInput = () => {
 
           {data ? (
             <>
-              <List
-                grid={{
-                  gutter: 16,
-                  column: 5,
-                }}
-                dataSource={data.Search}
-                renderItem={(item) => (
-                  <List.Item key={item.imdbID}>
-                    <Link to={`/${item.imdbID}`}>
-                      <Card
-                        style={{
-                          background: `url(${item.Poster}) no-repeat center`,
-                          height: '300px',
-                          width: 200,
-                          backgroundSize: 'cover',
-                          position: 'relative',
-                        }}
-                        hoverable
-                        bordered={false}
-                      ></Card>
-                    </Link>
-                    <Button
-                      type="primary"
-                      shape="circle"
-                      icon={<HeartOutlined />}
-                      size="small"
-                      style={{ position: 'absolute', left: 14, bottom: 7 }}
-                      onClick={handleClickFavorite(item)}
-                      ghost={ghost}
-                      danger
-                    />
-                  </List.Item>
-                )}
+              <ListComponent
+                data={data.Search}
+                onclick={(item) => handleClickFavorite(item)}
+                isDelite={false}
               />
+
               <Pagination
                 defaultCurrent={page}
                 total={totalPages}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Card, Empty, List, Image } from 'antd';
+import { Empty } from 'antd';
+import { ListComponent } from '../listComponent/ListComponent';
 
 export const Favorite = () => {
   const [data, setData] = useState({});
@@ -24,23 +25,10 @@ export const Favorite = () => {
   return (
     <>
       {data ? (
-        <List
-          grid={{
-            gutter: 16,
-            column: 5,
-          }}
-          dataSource={Object.values(data)}
-          renderItem={(item) => (
-            <List.Item>
-              <Card
-                hoverable
-                title={item.Title}
-                actions={[<button onClick={handleDelete(item)}>❌</button>]}
-              >
-                <Image width={200} src={item.Poster} />
-              </Card>
-            </List.Item>
-          )}
+        <ListComponent
+          data={Object.values(data)}
+          onclick={(item) => handleDelete(item)}
+          isDelite={true}
         />
       ) : (
         <Empty description={<span>Нет сохраненных фильмов</span>}></Empty>
