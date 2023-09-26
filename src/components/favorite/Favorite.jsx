@@ -8,20 +8,15 @@ export const Favorite = () => {
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('favorite'));
     setData(favorite);
-    // console.log('favorite', favorite);
   }, []);
-  // console.log('data', data);
 
   useEffect(() => {
     window.localStorage.setItem('favorite', JSON.stringify(data));
   }, [data]);
 
   const handleDelete = (item) => () => {
-    // console.log(item);
     const dataFiltered = { ...data };
     delete dataFiltered[item.imdbID];
-
-    // console.log('dataFiltered', dataFiltered);
 
     setData(dataFiltered);
   };
@@ -48,7 +43,7 @@ export const Favorite = () => {
           )}
         />
       ) : (
-        <Empty />
+        <Empty description={<span>Нет сохраненных фильмов</span>}></Empty>
       )}
     </>
   );

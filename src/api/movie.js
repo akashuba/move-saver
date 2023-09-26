@@ -17,3 +17,9 @@ export const getMovie = (title, page = 1) => {
     options
   );
 };
+
+export const getMovieDetail = (id) => {
+  return axios.request(`/?apikey=${apiKey}&i=${id}`, options);
+};
+
+//tt0295297
