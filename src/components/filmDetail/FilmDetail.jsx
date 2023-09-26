@@ -8,8 +8,6 @@ export const FilmDetail = () => {
   const { id } = useParams();
   const [filmData, setFilmData] = useState();
 
-  console.log(filmData);
-
   useEffect(() => {
     getMovieDetail(id)
       .then((response) => setFilmData(response?.data))

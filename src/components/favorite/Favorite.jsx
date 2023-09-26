@@ -1,32 +1,28 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Empty } from 'antd';
-import { ListComponent } from '../listComponent/ListComponent';
+import { ListComponent } from '../listComponent';
 
 export const Favorite = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('favorite'));
-    setData(favorite);
+    console.log('favorite: ', Object.values(favorite));
+    setData(Object.values(favorite));
   }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem('favorite', JSON.stringify(data));
-  }, [data]);
-
   const handleDelete = (item) => () => {
-    const dataFiltered = { ...data };
-    delete dataFiltered[item.imdbID];
-
+    const dataFiltered = data.filter((el) => el.imdbID !== item.imdbID);
     setData(dataFiltered);
+    window.localStorage.setItem('favorite', JSON.stringify(dataFiltered));
   };
 
   return (
     <>
       {data ? (
         <ListComponent
-          data={Object.values(data)}
+          data={data}
           onclick={(item) => handleDelete(item)}
           isDelite={true}
         />

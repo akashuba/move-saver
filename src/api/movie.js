@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// const apiKey = '286f01d0'
 const apiKey = '248a3616';
 
 const options = {
@@ -9,7 +8,6 @@ const options = {
 };
 
 export const getMovie = (title, page = 1) => {
-  // const incomeTitle = title ? `t=${title}` : '';
   const incomeTitle = title ? `s=${title}` : '';
 
   return axios.request(
@@ -21,5 +19,3 @@ export const getMovie = (title, page = 1) => {
 export const getMovieDetail = (id) => {
   return axios.request(`/?apikey=${apiKey}&i=${id}`, options);
 };
-
-//tt0295297

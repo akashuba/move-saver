@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Empty, Pagination, Input, Space } from 'antd';
 
-import { ListComponent } from '../listComponent/ListComponent';
+import { ListComponent } from '../listComponent';
 
 import { getMovie } from '../../api/movie';
 
@@ -38,7 +38,11 @@ export const SearchInput = () => {
     const favorite = JSON.parse(localStorage.getItem('favorite'));
 
     favorite[item?.imdbID] = item;
-    window.localStorage.setItem('favorite', JSON.stringify(favorite));
+
+    window.localStorage.setItem(
+      'favorite',
+      JSON.stringify(Object.values(favorite))
+    );
   };
 
   let totalPages = 0;
